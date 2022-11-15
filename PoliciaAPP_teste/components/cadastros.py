@@ -70,13 +70,13 @@ def imprimir_tabela (data):
 # Bar Graph            
 @app.callback(
     Output('bar-graph', 'figure'),
-    [Input('store-despesas', 'data'),
+    [Input('store-cadastro', 'data'),
     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def bar_chart(data, theme):
     df = pd.DataFrame(data)   
-    df_grouped = df.groupby("Categoria").sum()[["Valor"]].reset_index()
-    graph = px.bar(df_grouped, x='Categoria', y='Valor', title="Despesas Gerais")
+    df_grouped = df.groupby("Sexo").value_counts().reset_index()
+    graph = px.bar(df_grouped, x='Sexo', y='Policiais', title="Contingente")
     graph.update_layout(template=template_from_url(theme))
     graph.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
     return graph

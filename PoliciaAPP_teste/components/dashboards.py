@@ -152,16 +152,43 @@ def populate_dropdownvalues(data):
 
 # VALOR - saldo
 @app.callback(
-    Output("p-saldo-dashboards", "children"),
-    [Input("store-despesas", "data"),
-    Input("store-receitas", "data")])
-def saldo_total(despesas, receitas):
-    df_despesas = pd.DataFrame(despesas)
-    df_receitas = pd.DataFrame(receitas)
+    Output("p-totalpolicia-dashboards", "children"),
+    [Input("store-cadastro", "data")])
+def total_pms(cadastros):
+    df_cadastros = pd.DataFrame(cadastros)
 
-    valor = df_receitas['Valor'].sum() - df_despesas['Valor'].sum()
+    valor = df_cadastros.count(axis=0, level=None, numeric_only=False)
 
-    return f"R$ {valor}"
+    return f"{valor}"
+
+@app.callback(
+    Output("p-afastados-dashboards", "children"),
+    [Input("store-cadastro", "data")])
+def pms_afastados(cadastros):
+    df_cadastros = pd.DataFrame(cadastros)
+
+    valor = df_cadastros['Valor'].sum() - df_cadastros['Valor'].sum()
+
+    return f"{valor}" 
+@app.callback(
+    Output("p-mediaidade-dashboards", "children"),
+    [Input("store-cadastro", "data")])
+def pms_idade(cadastros):
+    df_cadastros = pd.DataFrame(cadastros)
+
+    valor = df_cadastros['Valor'].sum() - df_cadastros['Valor'].sum()
+
+    return f"{valor}"
+
+@app.callback(
+    Output("p-reserva-dashboards", "children"),
+    [Input("store-cadastro", "data")])
+def pms_reserva(cadastros):
+    df_cadastros = pd.DataFrame(cadastros)
+
+    valor = df_cadastros['Valor'].sum() - df_cadastros['Valor'].sum()
+
+    return f"{valor}"
     
 # Gráfico 1
 @app.callback(
