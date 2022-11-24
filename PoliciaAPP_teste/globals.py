@@ -4,42 +4,52 @@ import os
 # =========  Criação das tabelas  =========== #
 if ("df_cadastro.csv" in os.listdir()):
     df_cadastro = pd.read_csv("df_cadastro.csv", index_col=0, parse_dates=True)
+    df_cadastro['Data_Nascimento'] = pd.to_datetime(df_cadastro['Data_Nascimento'])
+    df_cadastro['Data_de_Ingresso'] = pd.to_datetime(df_cadastro['Data_de_Ingresso'])
+    df_cadastro['Inicio_do_Afastamento'] = pd.to_datetime(df_cadastro['Inicio_do_Afastamento'])
+    df_cadastro['Fim_do_Afastamento'] = pd.to_datetime(df_cadastro['Fim_do_Afastamento'])
+    
+    df_cadastro['Data_Nascimento'] = df_cadastro['Data_Nascimento'].apply(lambda x: x.date())
+    df_cadastro['Data_de_Ingresso'] = df_cadastro['Data_de_Ingresso'].apply(lambda x: x.date())
+    df_cadastro['Inicio_do_Afastamento'] = df_cadastro['Inicio_do_Afastamento'].apply(lambda x: x.date())
+    df_cadastro['Fim_do_Afastamento'] = df_cadastro['Fim_do_Afastamento'].apply(lambda x: x.date())
 
 else:
     data_structure = {
         'Nome':[],
         'Matricula':[],
         'CPF':[],
-        'Data Nascimento':[],
+        'Data_Nascimento':[],
         'Sexo':[],
-        'Tipo Sanguíneo':[],
-        'Telefone':[],
-        'Email':[],
+        'Tipo_Sanguíneo':[],
         'Endereço':[],
         'Cidade':[],
         'CEP':[],
+        'Telefone':[],
+        'Email':[],
         'Idiomas':[],
-        'Comportamento':[],  
+        'Comportamento':[], 
         'Formação':[],
-        'Curso de formação':[],
-        'Curso PM':[],
-        'Outros cursos':[],
-        'Licenças Especiais Acumuladas':[],
+        'Curso_de_formação':[],
+        'Curso_PM':[],
+        'Outros_cursos':[],
+        'Licenças_Especiais_Acumuladas':[],
+        'Lotação':[],
         'Região':[],
         'Batalhão':[],
         'Companhia':[],
         'Pelotão':[],
         'Grupo':[],
-        'Tipo Tempo Anterior':[],
-        'Tempo em Dias':[],
-        'Tipo de Restrição':[],
-        'Fim da Restrição':[],
-        'Data de Engresso':[],
+        'Tipo_Tempo_Anterior':[],
+        'Tempo_em_Dias':[],
+        'Tipo_de_Restrição':[],
+        'Fim_da_Restrição':[],
+        'Data_de_Ingresso':[],
         'Posto':[],
-        'Cidade de Atuação':[],
-        'Tipo de Afastamento':[],
-        'Inicio do Afastamento':[],
-        'Fim do Afastamento':[],                            
+        'Cidade_de_Atuação':[],
+        'Tipo_de_Afastamento':[],
+        'Inicio_do_Afastamento':[],
+        'Fim_do_Afastamento':[],
         }
 
     df_cadastro = pd.DataFrame(data_structure)

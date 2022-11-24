@@ -90,7 +90,7 @@ layout = dbc.Col([
                         html.Label("Categorias a serem filtradas"),
                         html.Div(
                             dcc.Dropdown(
-                            id="dropdown-receita",
+                            id="dropdown-filtrar",
                             clearable=False,
                             style={"width": "100%"},
                             persistence=True,
@@ -127,8 +127,8 @@ layout = dbc.Col([
 
 # =========  Callbacks  =========== #
 # Dropdown Receita
-@app.callback([Output("dropdown-receita", "options"),
-    Output("dropdown-receita", "value"),
+@app.callback([Output("dropdown-filtrar", "options"),
+    Output("dropdown-filtrar", "value"),
     Output("p-receita-dashboards", "children")],
     Input("store-receitas", "data"))
 def populate_dropdownvalues(data):
@@ -169,7 +169,7 @@ def saldo_total(despesas, receitas):
     [Input('store-despesas', 'data'),
     Input('store-receitas', 'data'),
     Input("dropdown-despesa", "value"),
-    Input("dropdown-receita", "value"),
+    Input("dropdown-filtrar", "value"),
     Input(ThemeChangerAIO.ids.radio("theme"), "value")])
 def update_output(data_despesa, data_receita, despesa, receita, theme):
     df_ds = pd.DataFrame(data_despesa).sort_values(by='Data', ascending=True)
@@ -207,7 +207,7 @@ def update_output(data_despesa, data_receita, despesa, receita, theme):
     Output('graph2', 'figure'),
     [Input('store-receitas', 'data'),
     Input('store-despesas', 'data'),
-    Input('dropdown-receita', 'value'),
+    Input('dropdown-filtrar', 'value'),
     Input('dropdown-despesa', 'value'),
     Input('date-picker-config', 'start_date'),
     Input('date-picker-config', 'end_date'), 
@@ -239,7 +239,7 @@ def graph2_show(data_receita, data_despesa, receita, despesa, start_date, end_da
 @app.callback(
     Output('graph3', "figure"),
     [Input('store-receitas', 'data'),
-    Input('dropdown-receita', 'value'),
+    Input('dropdown-filtrar', 'value'),
     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def pie_receita(data_receita, receita, theme):

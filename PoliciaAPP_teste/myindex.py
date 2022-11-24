@@ -1,3 +1,4 @@
+from collections.abc import MutableMapping
 from dash import html, dcc
 import dash
 from dash.dependencies import Input, Output
