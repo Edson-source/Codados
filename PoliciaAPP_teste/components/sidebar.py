@@ -328,12 +328,12 @@ layout = dbc.Card([
 
                        dbc.Row([
                               dbc.Col([
-                                    dbc.Label("tipo: "),
+                                    dbc.Label("Tipo: "),
                                     dbc.Input(placeholder="Digite aqui", id="txt-tipo-afastamento", value="")
                             ],width=4),
 
                               dbc.Col([
-                                dbc.Label("Inicio: "),
+                                dbc.Label("Início: "),
                                 dcc.DatePickerSingle(id='date-inicio-afastamento',
                                     min_date_allowed=date(1800, 1, 1),
                                     max_date_allowed=date(2030, 12, 31),
@@ -352,7 +352,7 @@ layout = dbc.Card([
                                 ),
                             ], width=4),
                             dbc.ModalFooter([
-                                        dbc.Button("Adicionar Cadastrp", id="salvar_cadastro", color="success"),
+                                        dbc.Button("Adicionar Cadastro", id="salvar_cadastro", color="success"),
                                         dbc.Popover(dbc.PopoverBody("Cadastro salvo"), target="salvar_cadastro", placement="left", trigger="click"),
                                         ])
                         ]),  
