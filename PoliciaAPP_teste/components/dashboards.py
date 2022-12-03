@@ -107,7 +107,7 @@ layout = dbc.Col([
                             with_portal=True,
                             updatemode='singledate',
                             id='date-picker-config',
-                            style={'z-index': '101'})],
+                            style={'z-index': '100'})],
 
                 style={"height": "100%", "padding": "20px"}), 
 
