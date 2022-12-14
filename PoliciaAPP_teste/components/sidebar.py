@@ -519,8 +519,8 @@ def toggle_modal2(n1, is_open):
         State("txt-nome", "value"),
         State("valor-matricula", "value"),
         State("valor-cpf", "value"),
-        State("valor-idade", "value"),
         State("date-nascimento", "date"),
+        State("valor-idade", "value"),
         State("select-sexo", "value"),
         State("tipo-sanguineo", "value"),
         State("txt-endereco", "value"),
@@ -555,7 +555,7 @@ def toggle_modal2(n1, is_open):
         State('store-cadastro', 'data')
     ],
 )
-def salve_from_cadastro(n, nome, matricula, cpf, idade, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva, dict_cadastro):
+def salve_from_cadastro(n, nome, matricula, cpf, data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva, dict_cadastro):
 
     df_cadastro = pd.DataFrame(dict_cadastro)
 
@@ -568,7 +568,7 @@ def salve_from_cadastro(n, nome, matricula, cpf, idade, data_nascimento, sexo, t
         tipo_sanguineo = tipo_sanguineo[0] if type(tipo_sanguineo) == list else tipo_sanguineo
         sexo = sexo[0] if type(sexo) == list else sexo
 
-        df_cadastro.loc[df_cadastro.shape[0]] = [nome, matricula, cpf, idade, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva,]
+        df_cadastro.loc[df_cadastro.shape[0]] = [nome, matricula, cpf, data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva,]
         df_cadastro.to_csv("df_cadastro.csv")
 
     
