@@ -20,6 +20,7 @@ else:
         'Matricula':[],
         'CPF':[],
         'Data_Nascimento':[],
+        'Idade':[],
         'Sexo':[],
         'Tipo_Sanguíneo':[],
         'Endereço':[],
@@ -50,6 +51,7 @@ else:
         'Tipo_de_Afastamento':[],
         'Inicio_do_Afastamento':[],
         'Fim_do_Afastamento':[],
+        'Direito_a_reserva':[],
         }
 
     df_cadastro = pd.DataFrame(data_structure)
