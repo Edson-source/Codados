@@ -30,6 +30,7 @@ layout = dbc.Col([
             dbc.Col([
                     dbc.CardGroup([
                             dbc.Card([
+
                                     html.Legend("Total de PMs"),
                                     html.H5("-",id="p-totalpolicia-dashboards", style={}),
                             ], style={"padding-left": "20px", "padding-top": "10px"}),
