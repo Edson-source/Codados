@@ -43,18 +43,18 @@ layout = dbc.Col([
 
 
             # Média de Idade
-            #dbc.Col([
-                    #dbc.CardGroup([
-                            #dbc.Card([
-                                    #html.Legend("Média de Idade"),
-                                    #html.H5('-', id="p-mediaidade-dashboards"),
-                            #], style={"padding-left": "20px", "padding-top": "10px"}),
-                            #dbc.Card(
-                                #html.Div(className="fa fa-id-card", style=card_icon), 
-                                #color="success",
-                                #style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
-                            #)])
-                    #], width=3), """
+            dbc.Col([
+                    dbc.CardGroup([
+                            dbc.Card([
+                                    html.Legend("Média de Idade"),
+                                    html.H5('-', id="p-mediaidade-dashboards"),
+                            ], style={"padding-left": "20px", "padding-top": "10px"}),
+                            dbc.Card(
+                                html.Div(className="fa fa-id-card", style=card_icon), 
+                                color="success",
+                                style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
+                            )])
+                    ], width=3),
 
             # Reserva
             dbc.Col([
@@ -69,7 +69,7 @@ layout = dbc.Col([
                         style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
                     )])
                 ], width=3),
-        ], style={"margin": "10px"}),
+        ], style={"margin": "10px", "font-size" : "12px"}),
 
         dbc.Row([
             #dbc.Col([
@@ -121,28 +121,29 @@ def total_pms(cadastros):
     
     return f"{valor}"
 
-""" @app.callback(
+@app.callback(
     Output("p-mediaidade-dashboards", "children"),
     [Input("store-cadastro", "data")])
 def pms_idade(cadastros):
-    df_cadastros = pd.DataFrame(cadastros)
+    df = pd.DataFrame(cadastros)
 
-    df_datas_nasc = pd.DataFrame(df_cadastros['Data Nascimento'])
+    df_separado_s = pd.DataFrame(df['Idade'])
+    soma = df_separado_s['Idade'].sum()
+    media = soma / len(df)
 
-    for date in df_datas_nasc :
-        date = pd.to_datetime(dataframe[‘DateTime’]).dt.date
-
-    return f"{valor}" """
+    return f"{media} anos"
 
 @app.callback(
     Output("p-reserva-dashboards", "children"),
     [Input("store-cadastro", "data")])
 def pms_reserva(cadastros):
-    df_cadastros = pd.DataFrame(cadastros)
+    df = pd.DataFrame(cadastros)
+    df_separado_s = pd.DataFrame(df['Direito_a_reserva'])
+    df_separado_s = df_separado_s.groupby(by='Direito_a_reserva')['Direito_a_reserva'].count()
+    df_separado_d = pd.DataFrame(df_separado_s, columns=['Direito_a_reserva'])
+    df_separado_d.rename(columns={'Direito_a_reserva' : 'Quant'}, inplace=True)
 
-    valor = df_cadastros['Valor'].sum() - df_cadastros['Valor'].sum()
-
-    return f"{valor}"
+    return f"{df_separado_d.loc['sim','Quant']}"
     
 
 
