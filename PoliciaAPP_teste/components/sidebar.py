@@ -132,7 +132,7 @@ layout = dbc.Card([
                     dbc.Col([
                         dbc.Label("Nome: "),
                         dbc.Input(placeholder="Digite nome",
-                                              id="txt-nome", value=""),
+                                              id="txt-nome"),
                     ], width=4),
                     dbc.Col([
                         dbc.Label("Matricula: "),
@@ -143,6 +143,12 @@ layout = dbc.Card([
                         dbc.Label("Cpf: "),
                         dbc.Input(placeholder="12345678912",
                                               id="valor-cpf", value="")
+                    ], width=4),
+                   
+                    dbc.Col([
+                        dbc.Label("Idade: "),
+                        dbc.Input(placeholder="Digite idade",
+                                              id="valor-idade", value="")
                     ], width=4)
                 ]),
 
@@ -161,8 +167,8 @@ layout = dbc.Card([
 
                     dbc.Col([
                         dbc.Label("Sexo: "),
-                        dbc.Select(id='select-sexo',
-                                   options=[{'label': i, 'value': i}
+                        dbc.Select(id="select-sexo",
+                                   options=[{"label": i, "value": i}
                                             for i in df_cat_sexo],
                                    value="",
                                    ),
@@ -171,8 +177,8 @@ layout = dbc.Card([
 
                     dbc.Col([
                         dbc.Label("Tipo Sanguineo: "),
-                        dbc.Select(id='tipo-sanguineo',
-                                   options=[{'label': i, 'value': i}
+                        dbc.Select(id="tipo-sanguineo",
+                                   options=[{"label": i, "value": i}
                                             for i in df_cat_tipo_sanguineo],
                                    value="",
                                    ),
@@ -395,6 +401,14 @@ layout = dbc.Card([
                                              style={"width": "100%"}
                                              ),
                     ], width=4),
+                  
+                    dbc.Col([
+                        dbc.Label("Direito a reserva: "),
+                        dbc.Input(placeholder="sim/nao",
+                                              id="txt-direito-a-reserva", value="")
+                    ], width=4),
+
+                
                     dbc.ModalFooter([
                         dbc.Button("Adicionar Cadastro",
                                    id="salvar_cadastro", color="success"),
@@ -431,7 +445,7 @@ layout = dbc.Card([
                                           id="valor_matricula_apagar", value=""),
                     dbc.ModalFooter([
                                     dbc.Button(
-                                        "Apagar cadastro", id="apagar-cadastro", color="warning"),
+                                        "Apagar cadastro",  color="error", id="apagar-cadastro",value="apagar_cadastro"),
                                     dbc.Popover(dbc.PopoverBody(
                                         "Cadastro Apagado"), target="apagar-cadastro", placement="left", trigger="click"),
                                     ])
@@ -498,64 +512,65 @@ def toggle_modal2(n1, is_open):
 
 
 @app.callback(
-    Output('store_cadastro', 'data'),
+    Output('store-cadastro', 'data'),
 
-    Input('salvar_cadastro', 'n_clicks'),
+    Input("salvar_cadastro", "n_clicks"),
     [
-        State('txt-nome', 'value'),
-        State('valor-matricula', 'value'),
-        State('valor-cpf', 'value'),
-        State('date-nascimento', 'date'),
-        State('select-sexo', 'value'),
-        State('tipo-sanguineo', 'value'),
-        State('txt-endereco', 'value'),
-        State('txt-cidade', 'value'),
-        State('txt-cep', 'value'),
-        State('txt-telefone', 'value'),
-        State('txt-email', 'value'),
-        State('txt-idiomas', 'value'),
-        State('txt-comportamento', 'value'),
-        State('txt-formacao', 'value'),
-        State('txt-curso-formacao', 'value'),
-        State('txt-cursos-pm', 'value'),
-        State('txt-outros-cursos', 'value'),
-        State('txt-licenca-esp-acumu', 'value'),
-        State('txt-lotacao', 'value'),
-        State('txt-regiao', 'value'),
-        State('txt-batalhao', 'value'),
-        State('txt-companhia', 'value'),
-        State('txt-pelotao', 'value'),
-        State('txt-grupo', 'value'),
-        State('txt-tipo-temp-ant', 'value'),
-        State('txt-tempoemdias', 'value'),
-        State('txt-tipo-restricao', 'value'),
-        State('txt-fim-restricao', 'value'),
-        State('date-ingresso', 'date'),
-        State('txt-posto-graduacao', 'value'),
-        State('txt-cidade-atuacao', 'value'),
-        State('txt-tipo-afastamento', 'value'),
-        State('date-inicio-afastamento', 'date'),
-        State('date-fim-afastamento', 'date'),
-        State('store_cadastro', 'data')
+        State("txt-nome", "value"),
+        State("valor-matricula", "value"),
+        State("valor-cpf", "value"),
+        State("valor-idade", "value"),
+        State("date-nascimento", "date"),
+        State("select-sexo", "value"),
+        State("tipo-sanguineo", "value"),
+        State("txt-endereco", "value"),
+        State("txt-cidade", "value"),
+        State("txt-cep", "value"),
+        State("txt-telefone", "value"),
+        State("txt-email", "value"),
+        State("txt-idiomas", "value"),
+        State("txt-comportamento", "value"),
+        State("txt-formacao", "value"),
+        State("txt-curso-formacao", "value"),
+        State("txt-cursos-pm", "value"),
+        State("txt-outros-cursos", "value"),
+        State("txt-licenca-esp-acumu", "value"),
+        State("txt-lotacao", "value"),
+        State("txt-regiao", "value"),
+        State("txt-batalhao", "value"),
+        State("txt-companhia", "value"),
+        State("txt-pelotao", "value"),
+        State("txt-grupo", "value"),
+        State("txt-tipo-temp-ant", "value"),
+        State("txt-tempoemdias", "value"),
+        State("txt-tipo-restricao", "value"),
+        State("txt-fim-restricao", "value"),
+        State("date-ingresso", "date"),
+        State("txt-posto-graduacao", "value"),
+        State("txt-cidade-atuacao", "value"),
+        State("txt-tipo-afastamento", "value"),
+        State("date-inicio-afastamento", "date"),
+        State("date-fim-afastamento", "date"),
+        State("txt-direito-a-reserva", "value"),
+        State('store-cadastro', 'data')
     ],
 )
-def salve_from_cadastro(n, nome, matricula, cpf, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, dict_cadastro):
+def salve_from_cadastro(n, nome, matricula, cpf, idade, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva, dict_cadastro):
 
-    df_cadastro_dict = pd.DataFrame(dict_cadastro)
+    df_cadastro = pd.DataFrame(dict_cadastro)
 
     if n and not (nome == "" or nome is None):
-        data_nascimento = pd.to_datetime(date).date()
-        data_ingresso = pd.to_datetime(date).date()
-        inicio_afastamento = pd.to_datetime(date).date()
-        fim_afastamento = pd.to_datetime(date).date()
-        fim_restricao = pd.to_datetime(date).date()
+        data_nascimento = pd.to_datetime(data_nascimento).date()
+        data_ingresso = pd.to_datetime(data_ingresso).date()
+        inicio_afastamento = pd.to_datetime(inicio_afastamento).date()
+        fim_afastamento = pd.to_datetime(fim_afastamento).date()
 
-        tipo_sanguineo = tipo_sanguineo[0]
-        sexo = sexo[0]
+        tipo_sanguineo = tipo_sanguineo[0] if type(tipo_sanguineo) == list else tipo_sanguineo
+        sexo = sexo[0] if type(sexo) == list else sexo
 
-        df_cadastro_dict.loc[df_cadastro_dict.shape[0]] = [nome, matricula, cpf, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos,
-                                                 licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento]
-        df_cadastro_dict.to_csv("df_cadastro.csv")
+        df_cadastro.loc[df_cadastro.shape[0]] = [nome, matricula, cpf, idade, data_nascimento, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva,]
+        df_cadastro.to_csv("df_cadastro.csv")
 
-    data_return = df_cadastro_dict.to_dict()
+    
+    data_return = df_cadastro.to_dict()
     return data_return
