@@ -39,7 +39,7 @@ layout = dbc.Col([
                                 color="warning",
                                 style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
                             )])
-                    ], width=3),
+                    ], width=4),
 
 
             # Média de Idade
@@ -54,7 +54,7 @@ layout = dbc.Col([
                                 color="success",
                                 style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
                             )])
-                    ], width=3),
+                    ], width=4),
 
             # Reserva
             dbc.Col([
@@ -68,7 +68,7 @@ layout = dbc.Col([
                         color="warning",
                         style={"maxWidth": 75, "height": 100, "margin-left": "-10px"},
                     )])
-                ], width=3),
+                ], width=4),
         ], style={"margin": "10px", "font-size" : "12px"}),
 
         dbc.Row([

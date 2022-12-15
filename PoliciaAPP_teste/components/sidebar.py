@@ -469,7 +469,7 @@ layout = dbc.Card([
             dbc.NavLink("Cadastros", href="/cadastros",
                         active="exact"),
         ], vertical=True, pills=True, id='nav_buttons', style={"margin-bottom": "50px"}),
-    ThemeChangerAIO(aio_id="theme", radio_props={"value": dbc.themes.VAPOR})
+    ThemeChangerAIO(aio_id="theme", radio_props={"value": dbc.themes.LUMEN})
 
 ], id='sidebar_completa'
 )
