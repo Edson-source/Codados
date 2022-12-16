@@ -71,3 +71,13 @@ else:
     df_cat_tipo_sanguineo = pd.DataFrame(df_cat_tipo_sanguineo, columns=['Tipo Sanguineo'])
     df_cat_sexo.to_csv("df_cat_sexo.csv")
     df_cat_tipo_sanguineo.to_csv("df_cat_tipo_sanguineo.csv")
+
+if ("df_cat_servico.csv" in os.listdir()):
+    df_cat_servico = pd.read_csv("df_cat_servico.csv", index_col=0)
+    df_cat_servico = df_cat_servico.values.tolist()
+
+else:    
+    df_cat_servico = {'Serviço': ["Escola Naval", "Academia Militar das Agulhas Negras", "Academia da Força Aérea", "Instituto Militar de Engenharia", "Instituto Tecnológico de Aeronáutica", "Outros"]}
+    
+    df_cat_servico = pd.DataFrame(df_cat_servico, columns=['Serviço', 'Tempo'])
+    df_cat_servico.to_csv("df_cat_servico.csv")

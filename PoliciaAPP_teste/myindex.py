@@ -27,6 +27,7 @@ content = html.Div(id="page-content")
 
 app.layout = dbc.Container(children=[
     dcc.Store(id='store-cadastro', data = df_cadastro_aux),
+    dcc.Store(id='store-apagar', data = df_cadastro_aux),
     dcc.Store(id='store-cat_sexo', data = df_cat_sexo_aux),
     dcc.Store(id='store-cat_tipo_sanguineo', data=df_cat_tipo_sanguineo_aux),
     

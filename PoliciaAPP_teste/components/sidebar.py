@@ -168,8 +168,7 @@ layout = dbc.Card([
                     dbc.Col([
                         dbc.Label("Sexo: "),
                         dbc.Select(id="select-sexo",
-                                   options=[{"label": i, "value": i}
-                                            for i in df_cat_sexo],
+                                   options=[{"label": i, "value": i} for i in df_cat_sexo], 
                                    value="",
                                    ),
 
@@ -316,8 +315,10 @@ layout = dbc.Card([
                 dbc.Row([
                     dbc.Col([
                         dbc.Label("Tipo: "),
-                        dbc.Input(
-                            placeholder="Ex: privado,público ...", id="txt-tipo-temp-ant", value="")
+                        dbc.Select(
+                             id="txt-tipo-temp-ant",
+                             options=[{"label": i, "value": i} for i in df_cat_servico],
+                              value="")
                     ], width=3),
 
                     dbc.Col([
@@ -437,15 +438,12 @@ layout = dbc.Card([
                 dbc.Col([
                     dbc.Label("Nome: "),
                     dbc.Input(placeholder="Digite o nome",
-                                          id="txt-matricula-apagar"),
+                                          id="txt-nome-apagar"),
                 ], width=6),
                 dbc.Col([
-                    dbc.Label("Matricula: "),
-                    dbc.Input(placeholder="Digite a matricula",
-                                          id="valor_matricula_apagar", value=""),
                     dbc.ModalFooter([
                                     dbc.Button(
-                                        "Apagar cadastro",  color="error", id="apagar-cadastro",value="apagar_cadastro"),
+                                        "Apagar cadastro",  color="error", id="apagar_cadastro",value="apagar_cadastro"),
                                     dbc.Popover(dbc.PopoverBody(
                                         "Cadastro Apagado"), target="apagar-cadastro", placement="left", trigger="click"),
                                     ])
@@ -476,7 +474,7 @@ layout = dbc.Card([
 
 
 # =========  Callbacks  =========== #
-# Pop-up receita
+# Pop-up novo cadastro
 @app.callback(
     Output("modal-novo-cadastro", "is_open"),
     Input("open-novo-cadastro", "n_clicks"),
@@ -487,7 +485,7 @@ def toggle_modal(n1, is_open):
         return not is_open
 
 
-# Pop-up despesa
+# Pop-up apagar cadastro
 @app.callback(
     Output("modal-remove-cadastro", "is_open"),
     Input("open-remove-cadastro", "n_clicks"),
@@ -499,22 +497,21 @@ def toggle_modal1(n1, is_open):
 
 
 # Pop-up perfis
-@app.callback(
+""" @app.callback(
     Output("modal-perfil", "is_open"),
     Input("botao_avatar", "n_clicks"),
     State("modal-perfil", "is_open")
 )
 def toggle_modal2(n1, is_open):
     if n1:
-        return not is_open
+        return not is_open """
 
-# Enviar Form receita
-
-
+# Pop-up criar cadastro
 @app.callback(
     Output('store-cadastro', 'data'),
 
     Input("salvar_cadastro", "n_clicks"),
+    
     [
         State("txt-nome", "value"),
         State("valor-matricula", "value"),
@@ -553,12 +550,11 @@ def toggle_modal2(n1, is_open):
         State("date-fim-afastamento", "date"),
         State("txt-direito-a-reserva", "value"),
         State('store-cadastro', 'data')
-    ],
+    ]
 )
-def salve_from_cadastro(n, nome, matricula, cpf, data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva, dict_cadastro):
-
+def salve_from_cadastro(n, nome, matricula, cpf,  data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva, dict_cadastro):
     df_cadastro = pd.DataFrame(dict_cadastro)
-
+    
     if n and not (nome == "" or nome is None):
         data_nascimento = pd.to_datetime(data_nascimento).date()
         data_ingresso = pd.to_datetime(data_ingresso).date()
@@ -567,10 +563,35 @@ def salve_from_cadastro(n, nome, matricula, cpf, data_nascimento, idade, sexo, t
 
         tipo_sanguineo = tipo_sanguineo[0] if type(tipo_sanguineo) == list else tipo_sanguineo
         sexo = sexo[0] if type(sexo) == list else sexo
+        tipo_temp_ant = tipo_temp_ant[0] if type(tipo_temp_ant) == list else tipo_temp_ant
 
-        df_cadastro.loc[df_cadastro.shape[0]] = [nome, matricula, cpf, data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva,]
+        df_cadastro.loc[df_cadastro.shape[0]] = [nome, matricula, cpf,  data_nascimento, idade, sexo, tipo_sanguineo, endereco, cidade, cep, telefone, email, idiomas, comportamento, formacao, curso_formacao, cursos_pm, outros_cursos, licenca_esp_acumu, lotacao, regiao, batalhao, companhia, pelotao, grupo, tipo_temp_ant, tempoemdias, tipo_restricao, fim_restricao, data_ingresso, posto_graduacao, cidade_atuacao, tipo_afastamento, inicio_afastamento, fim_afastamento, direito_reserva,]
         df_cadastro.to_csv("df_cadastro.csv")
 
     
     data_return = df_cadastro.to_dict()
+    return data_return
+
+#pop-up apagar cadastro
+@app.callback(
+    Output('store-apagar', 'data'),
+    Input("apagar_cadastro", "n_clicks"),
+    [
+        State("txt-nome-apagar", "value"),
+        State('store-apagar', 'data')
+
+    ],
+)
+def apagar_from_cadastro(n, nome, dict_apagar):
+    df_apagar = pd.DataFrame(dict_apagar)
+    nome_apgar = df_apagar['Nome'].apply(lambda x: x == nome) 
+  
+    if n and not (nome == "" or nome is None):
+        for i in df_apagar.index:
+            if nome_apgar[i] :
+                df_apagar.drop(i, inplace=True)
+                df_apagar.to_csv("df_cadastro.csv")
+        
+
+    data_return = df_apagar.to_dict()
     return data_return
