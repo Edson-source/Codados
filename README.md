@@ -45,4 +45,4 @@ Utilizando apenas **PYTHON** e as bibliotecas:
 
 
 
-<p align="center">Copyright © 2022 Asimov Academy</p>
+<p align="center">Copyright © 2022</p>
