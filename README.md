@@ -33,19 +33,14 @@ Utilizando apenas **PYTHON** e as bibliotecas:
 
 
 
-## 📜 Conteúdo
-Para aprender mais sobre como desenvolver projetos de Data Science, AI, Criação de Web Apps e Dashboards, acesse:
-
-<a href = "https://asimov.academy/"><img src="https://img.shields.io/badge/ASIMOV-Saiba%20Mais-lightgrey" target="_blank"></a> 
-
 ### 🤝 Suporte/Contato
 
 
-[![Whatsapp Badge](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5551981830833)
-[![Instagram Badge](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/asimov.academy/)
-[![Discord Badge](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/W2Nc7bxvk7)
+[![Whatsapp Badge](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)]([https://wa.me/5548999377583](https://linktr.ee/edsonnmj))
+[![Instagram Badge](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/edson_ney10/?hl=pt-br)
+  <a href="https://www.linkedin.com/in/edson-martins-183395210/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>  
 
-✉ contato@asimov.academy
+✉ edsonneyjr@gmail.com
 
 
 
